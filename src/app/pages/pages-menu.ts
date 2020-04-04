@@ -8,6 +8,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Search',
+    icon: 'search-outline',
+    link: '/pages/search',
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

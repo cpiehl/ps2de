@@ -5,8 +5,8 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,14 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { AppConfigService } from './services/app.config.service';
+import { ApiPrefixInterceptor } from './interceptors/ApiPrefixInterceptor';
+
+const initializerConfigFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +51,19 @@ import {
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiPrefixInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializerConfigFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
+  ]
 })
 export class AppModule {
 }

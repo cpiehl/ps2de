@@ -1,0 +1,37 @@
+<div [nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary"></div>
+
+<div class="row">
+  <nb-card>
+    <nb-card-body>
+      <form>
+        <input name="characterName" nbInput [(ngModel)]="characterName">
+        <button nbButton type="submit" (click)="searchByName(characterName)">Search By Name</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="selectRow($event)">
+    </ng2-smart-table>
+  </div>
+
+  <div class="col-6 h-100">
+    <nb-card>
+      <nb-card-header>Character</nb-card-header>
+      <nb-card-body>
+          <character fullWidth [character]="character"></character>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<!-- <nb-card *ngFor="let character of characterList">
+  <nb-card-header>{{character.name.first}}</nb-card-header>
+  <nb-card-body>
+    Faction: {{getFactionName(character.faction_id)}}
+    BR: {{character.battle_rank.value}}
+    Certs: {{character.certs.available_points}}
+  </nb-card-body>
+</nb-card> -->
