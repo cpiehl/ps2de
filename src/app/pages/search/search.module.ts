@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
-import { NbCardModule, NbButtonModule, NbInputModule, NbSpinnerModule, NbIconModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbInputModule, NbSpinnerModule, NbIconModule, NbTooltipModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CharacterModule } from '../../components/character/character.module';
 
@@ -19,6 +19,7 @@ import { CharacterModule } from '../../components/character/character.module';
     NbIconModule,
     NbInputModule,
     NbSpinnerModule,
+    NbTooltipModule,
     
     Ng2SmartTableModule,
 

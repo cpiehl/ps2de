@@ -1,17 +1,59 @@
-<div class="row" *ngIf="character">
-  <div class="col-4">
-    <img class="w-100 h-100" [src]="baseUrl + faction.image_path">
-  </div>
-  <div class="col-8">
-    <div class="row">
-      <div class="col-8">
-        <label for="firstName" class="label">Name</label>
-        <input id="firstName" nbInput fullWidth [ngModel]="character.name.first">
+
+<div *ngIf="character" [nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary">
+  <div class="row">
+    <div class="col-4">
+      <img class="w-100 h-100" [src]="baseUrl + faction.image_path">
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-auto">
+              <div class="certbox d-flex">
+                <span class="align-self-center">{{character.battle_rank.value}}</span>
+              </div>
+            </div>
+            <div class="col align-self-end">
+              <nb-progress-bar [value]="character.battle_rank.percent_to_next" size="tiny" status="warning"></nb-progress-bar>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="label">Cert Points</label>
+          <div class="row">
+            <div class="col-auto">
+              <span>{{character.certs.available_points}}</span>
+            </div>
+            <div class="col">
+              <nb-progress-bar [value]="character.certs.percent_to_next * 100" size="tiny" status="warning"></nb-progress-bar>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="label">ISO-4</label>
+          <div class="row">
+            <div class="col-auto">
+              <span>{{character.certs.available_points}}</span>
+            </div>
+            <div class="col">
+              <nb-progress-bar [value]="character.certs.percent_to_next * 100" size="tiny" status="info"></nb-progress-bar>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-4">
-        <label for="availableCerts" class="label">Available Certs</label>
-        <input id="availableCerts" nbInput fullWidth [ngModel]="character.certs.available_points">
-      </div>
+    </div>
+    <div class="col-12" *ngIf="character.stats">
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="Daily">
+          <chart class="w-100" type="line" [data]="stats['Daily']" [options]="options"></chart>
+        </nb-tab>
+        <nb-tab tabTitle="Weekly">
+          <chart class="w-100" type="line" [data]="stats['Weekly']" [options]="options"></chart>
+        </nb-tab>
+        <nb-tab tabTitle="Monthly">
+          <chart class="w-100" type="line" [data]="stats['Monthly']" [options]="options"></chart>
+        </nb-tab>
+      </nb-tabset>
     </div>
   </div>
 </div>

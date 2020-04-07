@@ -1,0 +1,29 @@
+
+<ng-template let-character="character" let-index="index" #characterTemplate>
+  <nb-card>
+    <nb-card-header>
+      <nb-select fullWidth [ngModel]="index" (ngModelChange)="index = $event; character = favorites[index]">
+        <nb-option *ngFor="let f of favorites; let i = index" value={{i}}>{{f.name.first}}</nb-option>
+      </nb-select>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="Stats">
+          <character class="w-100" [character]="character"></character>
+        </nb-tab>
+        <nb-tab tabTitle="Advanced">
+          advanced goes here
+        </nb-tab>
+      </nb-tabset>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<div class="row">
+  <div class="col-6">
+    <ng-container *ngTemplateOutlet="characterTemplate;"></ng-container>
+  </div>
+  <div class="col-6">
+    <ng-container *ngTemplateOutlet="characterTemplate;"></ng-container>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppConfigService {
   private appConfig;
+  private apiConfig;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,20 @@ export class AppConfigService {
       });
   }
 
+  loadApiConfig() {
+    return this.http
+      .get('/assets/data/api.config.json')
+      .toPromise()
+      .then(data => {
+        this.apiConfig = data;
+      });
+  }
+
   getServerUrl(): string {
     return this.appConfig.baseUrl;
+  }
+
+  getApiKey(): string {
+    return this.apiConfig.key;
   }
 }

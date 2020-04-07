@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchComponent } from './search/search.component';
+import { CompareComponent } from './compare/compare.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,10 @@ const routes: Routes = [{
     {
       path: 'search',
       component: SearchComponent,
+    },
+    {
+      path: 'compare',
+      component: CompareComponent,
     },
   ],
 }];

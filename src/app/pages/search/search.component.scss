@@ -1,0 +1,21 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+    
+    .outside {
+        display:flex;
+        flex-direction:row;
+
+        > input {
+            flex-grow: 2;
+        }
+    }
+    
+    .nohover:hover,
+    .nohover:focus {
+        background-color: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+}

@@ -23,9 +23,15 @@ import {
 import { AppConfigService } from './services/app.config.service';
 import { ApiPrefixInterceptor } from './interceptors/ApiPrefixInterceptor';
 
-const initializerConfigFn = (appConfig: AppConfigService) => {
+const initializerAppConfigFn = (appConfig: AppConfigService) => {
   return () => {
     return appConfig.loadAppConfig();
+  };
+};
+
+const initializerApiConfigFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadApiConfig();
   };
 };
 
@@ -59,7 +65,13 @@ const initializerConfigFn = (appConfig: AppConfigService) => {
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: initializerConfigFn,
+      useFactory: initializerAppConfigFn,
+      multi: true,
+      deps: [AppConfigService]
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializerApiConfigFn,
       multi: true,
       deps: [AppConfigService]
     }

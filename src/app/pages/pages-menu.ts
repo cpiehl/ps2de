@@ -13,6 +13,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/search',
   },
   {
+    title: 'Compare',
+    icon: 'swap',
+    link: '/pages/compare',
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

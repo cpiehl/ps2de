@@ -1,27 +1,40 @@
-<div [nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary"></div>
-
-<div class="row">
-  <nb-card>
-    <nb-card-body>
-      <form>
-        <input name="characterName" nbInput [(ngModel)]="characterName">
-        <button nbButton type="submit" (click)="searchByName(characterName)">Search By Name</button>
-      </form>
-    </nb-card-body>
-  </nb-card>
-</div>
+<!-- <div style="height: 90vh;" [nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary"></div> -->
 
 <div class="row">
   <div class="col-6">
-    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="selectRow($event)">
-    </ng2-smart-table>
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-body>
+            <form>
+              <div class="outside">
+                <input name="characterName" fullWidth nbInput [(ngModel)]="characterName">
+                <button nbButton type="submit" (click)="searchByName(characterName)">Search By Name</button>
+              </div>
+            </form>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <div class="col-12">
+        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="selectRow($event)">
+        </ng2-smart-table>
+      </div>
+    </div>
   </div>
 
-  <div class="col-6 h-100">
+  <div class="col-6" *ngIf="character">
     <nb-card>
-      <nb-card-header>Character</nb-card-header>
+      <nb-card-header>
+        <h4 class="float-left">{{character.name.first}}</h4>
+        <span class="float-right">
+          <button nbButton ghost class="nohover" (click)="toggleFavorite(character)" nbTooltip="Favorite">
+            <nb-icon pack="eva" [icon]="isFavorite ? 'star' : 'star-outline'"></nb-icon>
+          </button>
+        </span>
+      </nb-card-header>
       <nb-card-body>
-          <character fullWidth [character]="character"></character>
+          <character class="w-100" [character]="character"></character>
       </nb-card-body>
     </nb-card>
   </div>

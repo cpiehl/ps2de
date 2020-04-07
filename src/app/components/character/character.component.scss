@@ -1,0 +1,35 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+    
+    .certbox {
+        width: 4rem;
+        height: 3rem;
+        border-top-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        background: nb-theme(color-warning-default);
+
+        > span {
+            // color: nb-theme(text-alternate-color);
+            font-size: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    chart {
+        height: 400px;
+    }
+
+    // :host {
+    //     display: block;
+    //     height: nb-theme(card-height-medium);
+    //     width: 100%;
+
+    //     ::ng-deep chart {
+    //     display: block;
+    //     height: 100%;
+    //     width: 100%;
+    //     }
+    // }
+}
